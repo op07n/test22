@@ -3,7 +3,6 @@ using Panuon.UI.Silver;
 using System;
 using System.ComponentModel;
 using System.IO;
-//using System.Net;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows;
@@ -483,10 +482,27 @@ namespace 疫情查询___桌面版
                                     MAY.Text = jObject["suspectedCount"].ToString();
                                     MAYDIE.Text = jObject["seriousCount"].ToString();
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
                                     ButtonHelper.SetIcon(this.ERR, "");
-                                    toolTip.ToolTipText += "\n处理丁香园界面错误3。" + ex + "（点击消除）";
+                                    toolTip.ToolTipText += "\n处理丁香园界面错误3.1。" + ex + "（点击消除）";
+                                }
+                                try
+                                {
+                                    MGET.Text = "确诊 " + " " + (int.Parse(jObject["currentConfirmedIncr"].ToString()) <= 0 ? jObject["currentConfirmedIncr"].ToString() : "+" + jObject["currentConfirmedIncr"].ToString());
+                                    MMAY.Text = "疑似 " + " " + (int.Parse(jObject["suspectedIncr"].ToString()) <= 0 ? jObject["suspectedIncr"].ToString() : "+" + jObject["suspectedIncr"].ToString());
+                                    MMAYDIE.Text = "重症 " + " " + (int.Parse(jObject["seriousIncr"].ToString()) <= 0 ? jObject["seriousIncr"].ToString() : "+" + jObject["seriousIncr"].ToString());
+                                    MDIE.Text = "死亡 " + " " + (int.Parse(jObject["deadIncr"].ToString()) <= 0 ? jObject["deadIncr"].ToString() : "+" + jObject["deadIncr"].ToString());
+                                    MALIVE.Text = "治愈 " + " " + (int.Parse(jObject["curedIncr"].ToString()) <= 0 ? jObject["curedIncr"].ToString() : "+" + jObject["curedIncr"].ToString());
+                                }
+                                catch (Exception ex)
+                                {
+                                    this.Dispatcher.BeginInvoke(new Action(() =>
+                                    {
+                                        ButtonHelper.SetIcon(this.ERR, "");
+                                        toolTip.ToolTipText += "\n处理丁香园界面错误3.2。" + ex + "（点击消除）";
+                                    }), DispatcherPriority.SystemIdle, null);
+                                    return;
                                 }
                             }), DispatcherPriority.SystemIdle, null);
                         }
