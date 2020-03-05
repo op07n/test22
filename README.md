@@ -24,3 +24,7 @@ Bad Laugh Cat
 - Newtonsoft.Json （https://www.newtonsoft.com/json ）
 - Panuon.UI.Silver （https://github.com/Panuon/PanuonUI.Silver ）
 - Font Awesome （http://www.fontawesome.com.cn ）
+### 其他 / Others
+由于丁香园页面隔三岔五的更改样式，所以在数据失效时，请发起一个 Issues 以通知我。
+
+Because 丁香园 page changes the style every now and then, please issue an issue to notify me when the data is invalid.
